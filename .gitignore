@@ -23,3 +23,6 @@ ENV/
 *.bak
 *.swp
 .DS_Store
+
+.hypothesis/
+.pytest_cache/
