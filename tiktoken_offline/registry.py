@@ -18,9 +18,8 @@ ENDOFPROMPT = "<|endofprompt|>"
 pattern_string_1 = r"""'s|'t|'re|'ve|'m|'ll|'d|\s?[a-zA-Z_]+|\s?\d+|\s?[^\s\w\d]+|\s+(?!\S)|\s+"""
 # pattern_string_1_original = r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""
 
-pattern_string_2 = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
-
-pattern_string_2_alt = r'(?i:\'s|\'t|\'re|\'ve|\'m|\'ll|\'d)|[^\r\n\w\d]?[\w]+|\d{1,3}| ?[^\s\w\d]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+'
+pattern_string_2 = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\w\d]?[a-zA-Z_]+|\d{1,3}| ?[^\s\w\d]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
+# pattern_string_2_original = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
 
 def gpt2():
     mergeable_ranks = data_gym_to_mergeable_bpe_ranks(
@@ -88,7 +87,7 @@ def cl100k_base():
     }
     return {
         "name": "cl100k_base",
-        "pat_str": pattern_string_2_alt,
+        "pat_str": pattern_string_2,
         "mergeable_ranks": mergeable_ranks,
         "special_tokens": special_tokens,
     }
