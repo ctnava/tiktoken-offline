@@ -120,9 +120,10 @@ def test_hyp_roundtrip(make_enc: Callable[[], tiktoken.Encoding], text):
     enc = make_enc()
     encoded = enc.encode(text)
     decoded = enc.decode(encoded)
-    print("\ntext", text)
-    print("encoded", enc.encode(text))
-    print("decoded", enc.decode(enc.encode(text)))
+    if text != decoded:
+        print(f'test_hyp_roundtrip: "{text}" -> {encoded} -> "{decoded}"')
+    # Single Quotes are missing entirely (r50k_base)
+    # Problem not present in cl100k_base 
     assert text == decoded
 
 
@@ -228,10 +229,7 @@ def test_batch_encode(make_enc: Callable[[], tiktoken.Encoding]):
 @hypothesis.settings(deadline=None)
 def test_hyp_batch_roundtrip(make_enc: Callable[[], tiktoken.Encoding], batch):
     enc = make_enc()
-
     encoded = enc.encode_batch(batch)
-    # print(encoded)
-    # print([enc.encode(t) for t in batch])
     assert encoded == [enc.encode(t) for t in batch]
     decoded = enc.decode_batch(encoded)
     assert decoded == batch
