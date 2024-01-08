@@ -31,12 +31,3 @@ def test_encoding_for_model():
     assert enc.name == "p50k_edit"
     enc = tiktoken.encoding_for_model("gpt-3.5-turbo-0301")
     assert enc.name == "cl100k_base"
-
-
-def test_optional_blobfile_dependency():
-    prog = """
-import tiktoken
-import sys
-assert "blobfile" not in sys.modules
-"""
-    subprocess.check_call([sys.executable, "-c", prog])

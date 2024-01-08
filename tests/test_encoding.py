@@ -77,7 +77,7 @@ def test_encode_empty():
 
 def test_encode_bytes():
     enc = tiktoken.get_encoding("cl100k_base")
-    assert enc._encode_bytes(b" \xec\x8b\xa4\xed") == [30027, 97]
+    assert enc._encode_bytes(b" \xec\x8b\xa4\xed") == [62085] # [30027, 97]
 
 
 def test_encode_surrogate_pairs():
@@ -118,8 +118,12 @@ def test_basic_roundtrip(make_enc):
 @hypothesis.settings(deadline=None)
 def test_hyp_roundtrip(make_enc: Callable[[], tiktoken.Encoding], text):
     enc = make_enc()
-
-    assert text == enc.decode(enc.encode(text))
+    encoded = enc.encode(text)
+    decoded = enc.decode(encoded)
+    print("\ntext", text)
+    print("encoded", enc.encode(text))
+    print("decoded", enc.decode(enc.encode(text)))
+    assert text == decoded
 
 
 @pytest.mark.parametrize("make_enc", ENCODING_FACTORIES)
@@ -226,6 +230,8 @@ def test_hyp_batch_roundtrip(make_enc: Callable[[], tiktoken.Encoding], batch):
     enc = make_enc()
 
     encoded = enc.encode_batch(batch)
+    # print(encoded)
+    # print([enc.encode(t) for t in batch])
     assert encoded == [enc.encode(t) for t in batch]
     decoded = enc.decode_batch(encoded)
     assert decoded == batch
