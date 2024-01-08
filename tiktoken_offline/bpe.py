@@ -308,7 +308,8 @@ class CoreBPE:
         return self._encode_ordinary_native(text)
     
     def encode(self, text: str, allowed_special: Set[str]) -> Tuple[List[int], int]:
-        return self._encode_native(text, allowed_special)[0]
+        result = self._encode_native(text, allowed_special)
+        return result[0]
     
     def _encode_bytes(self, bytes_data: bytes) -> List[int]:
         """Encodes a byte sequence into a list of token indices.
@@ -364,7 +365,7 @@ class CoreBPE:
 
         # Try encoding using the special tokens encoder
         try:
-            piece_str = piece.decode('utf-8', errors="ignore")
+            piece_str = piece.decode('utf-8')
             token = self.special_tokens_encoder.get(piece_str)
             if token is not None:
                 return token

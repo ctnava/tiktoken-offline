@@ -4,7 +4,7 @@ import functools
 from concurrent.futures import ThreadPoolExecutor
 from typing import AbstractSet, Collection, Literal, NoReturn, Optional, Union
 
-import regex
+import re
 
 from .bpe import CoreBPE as _tiktoken_CoreBPE
 
@@ -355,9 +355,9 @@ class Encoding:
 
     def _encode_only_native_bpe(self, text: str) -> list[int]:
         """Encodes a string into tokens, but do regex splitting in Python."""
-        _unused_pat = regex.compile(self._pat_str)
+        _unused_pat = re.compile(self._pat_str)
         ret = []
-        for piece in regex.findall(_unused_pat, text):
+        for piece in re.findall(_unused_pat, text):
             ret.extend(self._core_bpe.encode_single_piece(piece))
         return ret
 
@@ -367,9 +367,9 @@ class Encoding:
 
 
 @functools.lru_cache(maxsize=128)
-def _special_token_regex(tokens: frozenset[str]) -> "regex.Pattern[str]":
-    inner = "|".join(regex.escape(token) for token in tokens)
-    return regex.compile(f"({inner})")
+def _special_token_regex(tokens: frozenset[str]) -> "re.Pattern[str]":
+    inner = "|".join(re.escape(token) for token in tokens)
+    return re.compile(f"({inner})")
 
 
 def raise_disallowed_special_token(token: str) -> NoReturn:
