@@ -15,11 +15,11 @@ FIM_MIDDLE = "<|fim_middle|>"
 FIM_SUFFIX = "<|fim_suffix|>"
 ENDOFPROMPT = "<|endofprompt|>"
 
-pattern_string_1 = r"""'s|'t|'re|'ve|'m|'ll|'d|\s?[a-zA-Z_]+|\s?\d+|\s?[^\s\w\d]+|\s+(?!\S)|\s+"""
-# pattern_string_1_original = r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""
+pattern_string_1 = r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""
+# pattern_string_1 = r"""'s|'t|'re|'ve|'m|'ll|'d|\s?[a-zA-Z_]+|\s?\d+|\s?[^\s\w\d]+|\s+(?!\S)|\s+"""
 
-pattern_string_2 = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\w\d]?[a-zA-Z_]+|\d{1,3}| ?[^\s\w\d]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
-# pattern_string_2_original = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
+pattern_string_2 = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\p{L}\p{N}]?\p{L}+|\p{N}{1,3}| ?[^\s\p{L}\p{N}]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
+# pattern_string_2 = r"""(?i:'s|'t|'re|'ve|'m|'ll|'d)|[^\r\n\w\d]?[a-zA-Z_]+|\d{1,3}| ?[^\s\w\d]+[\r\n]*|\s*[\r\n]+|\s+(?!\S)|\s+"""
 
 def gpt2():
     mergeable_ranks = data_gym_to_mergeable_bpe_ranks(

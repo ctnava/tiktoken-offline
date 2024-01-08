@@ -1,6 +1,6 @@
 from typing import List, Tuple, Callable, Set
 import threading
-import re
+import regex as re
 
 MAX_NUM_THREADS = 128
 
