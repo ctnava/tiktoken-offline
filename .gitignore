@@ -26,3 +26,5 @@ ENV/
 
 .hypothesis/
 .pytest_cache/
+
+sandbox.py
