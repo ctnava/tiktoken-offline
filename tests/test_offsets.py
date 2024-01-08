@@ -4,7 +4,7 @@ import hypothesis
 import pytest
 from hypothesis import strategies as st
 
-import tiktoken
+import tiktoken_offline as tiktoken
 
 from .test_helpers import MAX_EXAMPLES, SOME_ENCODING_FACTORIES
 

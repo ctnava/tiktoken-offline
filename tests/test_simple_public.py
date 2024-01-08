@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-import tiktoken
+import tiktoken_offline as tiktoken
 
 
 def test_simple():

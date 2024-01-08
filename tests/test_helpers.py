@@ -4,7 +4,7 @@ import os
 
 import pytest
 
-import tiktoken
+import tiktoken_offline as tiktoken
 
 MAX_EXAMPLES: int = int(os.environ.get("TIKTOKEN_MAX_EXAMPLES", "100"))
 

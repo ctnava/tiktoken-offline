@@ -361,8 +361,8 @@ class Encoding:
             ret.extend(self._core_bpe.encode_single_piece(piece))
         return ret
 
-    def _encode_bytes(self, text: bytes) -> list[int]:
-        return self._core_bpe._encode_bytes(text)
+    def _encode_bytes(self, bytes_data: bytes) -> list[int]:
+        return self._core_bpe._encode_bytes(bytes_data)
 
 
 

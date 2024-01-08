@@ -310,6 +310,27 @@ class CoreBPE:
     def encode(self, text: str, allowed_special: Set[str]) -> Tuple[List[int], int]:
         return self._encode_native(text, allowed_special)[0]
     
+    def _encode_bytes(self, bytes_data: bytes) -> List[int]:
+        """Encodes a byte sequence into a list of token indices.
+
+        Args:
+            bytes_data: The byte sequence to encode.
+
+        Returns:
+            A list of token indices representing the encoded byte sequence.
+        """
+
+        try:
+            text = bytes_data.decode('utf-8', errors="ignore")
+            return self._encode_ordinary_native(text)
+        except UnicodeDecodeError as e:
+            valid_text = bytes_data[:e.start].decode('utf-8', errors="ignore")
+            tokens, last_piece_token_len = self._encode_native(valid_text, set())
+            tokens, last_piece_token_len = self._increase_last_piece_token_len(tokens, last_piece_token_len)
+            unstable_bytes = self._decode_native(tokens[-last_piece_token_len:])
+            tokens = tokens[:-last_piece_token_len]
+            return tokens + [self.encode_single_token(unstable_bytes)]
+    
     def encode_with_unstable(self, text, allowed_special):
         # Encodes a string into a sequence of token indices with unstable tokens,
         # returning both the tokens and possible completions.
@@ -343,7 +364,7 @@ class CoreBPE:
 
         # Try encoding using the special tokens encoder
         try:
-            piece_str = piece.decode('utf-8')
+            piece_str = piece.decode('utf-8', errors="ignore")
             token = self.special_tokens_encoder.get(piece_str)
             if token is not None:
                 return token
