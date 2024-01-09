@@ -157,6 +157,7 @@ class CoreBPE:
         return bytes(ret)
 
     def _encode_ordinary_native(self, text):
+        # print("_encode_ordinary_native", text)
         # Encodes a string into a sequence of token indices.
         # 
         # Args:
