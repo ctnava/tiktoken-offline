@@ -48,5 +48,14 @@ num_tokens = len(array_tokens)
 
 ## Testing
 
-To test tiktoken itself, use `pytest -v`.
-To test the regex_3 module, use `py -m unittest -v tests.regex_testing`.
+To test, use the following
+
+```bash
+py setup.py build
+cd .\build\lib.win-amd64-cpython-310\
+python -m unittest -v tests.regex_testing
+pytest -v
+```
+
+`unittest` is used to test the regex package.
+`pytest` is used to test everything else.
