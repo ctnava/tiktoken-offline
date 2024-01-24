@@ -2416,7 +2416,7 @@ class CallGroup(RegexBase):
         self._key = self.__class__, self.group
 
     def remove_captures(self):
-        raise error("group reference not allowed", pattern, self.position)
+        raise error("group reference not allowed", None, self.position)
 
     def _compile(self, reverse, fuzzy):
         return [(OP.GROUP_CALL, self.call_ref)]
@@ -3336,7 +3336,7 @@ class RefGroup(RegexBase):
         self._key = self.__class__, self.group, self.case_flags
 
     def remove_captures(self):
-        raise error("group reference not allowed", pattern, self.position)
+        raise error("group reference not allowed", None, self.position)
 
     def _compile(self, reverse, fuzzy):
         flags = 0
