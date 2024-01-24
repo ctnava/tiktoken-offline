@@ -45,3 +45,8 @@ encoder = tiktoken.get_encoding("cl100k_base")
 array_tokens = encoder.encode("User Text Here") 
 num_tokens = len(array_tokens)
 ```
+
+## Testing
+
+To test tiktoken itself, use `pytest -v`.
+To test the regex_3 module, use `py -m unittest -v tests.regex_testing`.
