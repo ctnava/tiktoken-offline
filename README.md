@@ -1,10 +1,10 @@
 # Tiktoken Offline
 
-Tiktoken Offline is an offline, "dependency-free" BPE tokenizer based on the [tiktoken](https://github.com/openai/tiktoken) package by [OpenAI](https://github.com/openai).
+Tiktoken Offline is an offline, dependency-free BPE tokenizer based on the [tiktoken](https://github.com/openai/tiktoken) package by [OpenAI](https://github.com/openai). To achieve this, [regex](https://github.com/mrabarnett/mrab-regex) [2022.1.18](https://pypi.org/project/regex/2022.1.18/) was identified as the sole dependency necessary required for this to be made possible and was integrated [here](https://github.com/ctnava/tiktoken-offline/tree/main/tiktoken_offline/regex_3). Additionally, encoders are cached [here](https://github.com/ctnava/tiktoken-offline/tree/main/tiktoken_offline/data).
 
 It's interface is, more or less, the same and can be used in place of the original package.
 
-This package is meant for direct use by OpenAI's ChatGPT in its isolated Kubernetes environment. Since it has GCC installed for packages like NumPy, Regex remains the only dependency.
+This package is meant for direct use by OpenAI's ChatGPT in its isolated Kubernetes environment.
 
 ## Performance
 
