@@ -4,7 +4,7 @@ import functools
 from concurrent.futures import ThreadPoolExecutor
 from typing import AbstractSet, Collection, Literal, NoReturn, Optional, Union
 
-import regex
+import tiktoken_offline.regex_3 as regex
 
 from .bpe import CoreBPE as _tiktoken_CoreBPE
 

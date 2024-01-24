@@ -1,6 +1,6 @@
 from typing import List, Tuple, Callable, Set
 import threading
-import regex as re
+import tiktoken_offline.regex_3 as re
 
 MAX_NUM_THREADS = 128
 
