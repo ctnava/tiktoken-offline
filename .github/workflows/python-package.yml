@@ -39,4 +39,5 @@ jobs:
           pytest -v
       - name: Test with unittest
         run: |
-          py -m unittest -vv tests.regex_testing
+          python -m pip install -vv .
+          python -m unittest -v tests.regex_testing
